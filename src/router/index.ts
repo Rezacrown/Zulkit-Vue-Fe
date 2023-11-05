@@ -7,7 +7,33 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('@/pages/Landing/index.vue')
+    },
+    {
+      path: '/register',
+      name: 'register.pages',
+      component: () => import('@/pages/Register/index.vue')
+    },
+    {
+      path: '/login',
+      name: 'login.pages',
+      component: () => import('@/pages/Login/index.vue')
+    },
+    {
+      path: '/detail',
+      // name: 'login.pages',
+      component: () => import('@/pages/Detail/index.vue')
+    },
+    {
+      path: '/pricing',
+      name: 'pricing.pages',
+      component: () => import('@/pages/Pricing/index.vue')
+    },
+    {
+      path: '/success-checkout',
+      name: 'checkout.success',
+      component: () => import('@/pages/Success/success-checkout.vue')
     }
+
     // {
     //   path: '/about',
     //   name: 'about',
