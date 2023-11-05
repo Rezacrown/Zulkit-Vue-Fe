@@ -1,8 +1,22 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Gallery from './gallery.vue'
 import SideMenu from './side-menu.vue'
 
+import { ref } from 'vue'
+import { getData } from '@/utils/fetchData'
+import { useRoute } from 'vue-router'
 
+const router = useRoute()
+const detail = ref<any>({})
+
+onMounted(() => {
+  const { id } = router.params
+  getData('api/categories?id=' + id).then((res) => {
+    // console.log({ res: res.data })
+    detail.value = res.data
+  })
+})
 </script>
 
 <template>
@@ -12,11 +26,11 @@ import SideMenu from './side-menu.vue'
         <h1
           class="mb-2 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl md:text-4xl"
         >
-          RoboCrypto UI Kit
+          {{ detail.name }}
         </h1>
         <p class="text-gray-500">Build your next coin startup</p>
         <!-- gallery section -->
-        <Gallery />
+        <Gallery :data="detail.products" :curret-image="detail.thumbnails" />
         <!-- description section -->
         <section class="" id="orders">
           <h1 class="mt-8 mb-3 text-lg font-semibold">About</h1>
