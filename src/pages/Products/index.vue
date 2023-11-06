@@ -6,15 +6,18 @@ import { onMounted, ref } from 'vue'
 import { getData } from '../../utils/fetchData'
 import { useRoute } from 'vue-router'
 
-import type { ProductsPropsResponse } from '@/dto/products'
+import type { ProductPropsResponse } from '@/dto/products'
 
 const router = useRoute()
 const detail = ref<any>({})
+const currentImage = ref('')
 
 onMounted(() => {
   const { id } = router.params
-  getData('api/products?id=' + id).then((res: ProductsPropsResponse) => {
+  getData('api/products?id=' + id).then((res: ProductPropsResponse) => {
     detail.value = res.data
+    // console.log(res.data)
+    currentImage.value = String(res.data.galleries[0].url)
   })
 })
 </script>
@@ -30,7 +33,7 @@ onMounted(() => {
         </h1>
         <p class="text-gray-500">{{ detail.subtitle }}</p>
         <!-- gallery section -->
-        <Gallery :galery-image="detail.galleries" :current-image="detail" />
+        <Gallery :galery-image="detail.galleries" :current-image="currentImage" />
         <!-- description section -->
         <section class="" id="orders">
           <h1 class="mt-8 mb-3 text-lg font-semibold">About</h1>
