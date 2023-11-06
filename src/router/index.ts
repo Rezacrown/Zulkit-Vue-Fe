@@ -20,14 +20,24 @@ const router = createRouter({
       component: () => import('@/pages/Login/index.vue')
     },
     {
-      path: '/detail/:id',
+      path: '/product/:id',
       // name: 'login.pages',
-      component: () => import('@/pages/Detail/index.vue')
+      component: () => import('@/pages/Products/index.vue')
     },
     {
       path: '/pricing',
       name: 'pricing.pages',
       component: () => import('@/pages/Pricing/index.vue')
+    },
+    {
+      path: '/categories',
+      name: 'categories.pages',
+      component: () => import('@/pages/Categories/index.vue')
+    },
+    {
+      path: '/categories/:id',
+      name: 'categories-detail.pages',
+      component: () => import('@/pages/CategoriesDetail/index.vue')
     },
     {
       path: '/success-checkout',

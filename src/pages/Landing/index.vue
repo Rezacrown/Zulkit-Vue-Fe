@@ -7,7 +7,8 @@ import NewItems from '@/components/NewItems/index.vue'
 <template>
   <main>
     <Hero />
-    <Categories />
+    <Categories title="Top Categories" />
+    <!-- boleh pakai binding atau tidak -->
     <NewItems />
   </main>
 </template>
