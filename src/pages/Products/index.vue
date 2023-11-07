@@ -11,13 +11,15 @@ import type { ProductPropsResponse } from '@/dto/products'
 const router = useRoute()
 const detail = ref<any>({})
 const currentImage = ref('')
+const features = ref<String[]>([])
 
 onMounted(() => {
   const { id } = router.params
   getData('api/products?id=' + id).then((res: ProductPropsResponse) => {
-    detail.value = res.data
     // console.log(res.data)
-    currentImage.value = String(res.data.galleries[0].url)
+    detail.value = res.data
+    currentImage.value = String(res.data.galleries[0].url || '')
+    features.value = res.data.features.split(',')
   })
 })
 </script>
@@ -41,7 +43,7 @@ onMounted(() => {
         </section>
       </main>
       <!-- side-part section -->
-      <SideMenu />
+      <SideMenu :is-figma="detail.is_figma" :is-sketch="detail.is_sketch" :features="features" />
     </div>
   </div>
 </template>

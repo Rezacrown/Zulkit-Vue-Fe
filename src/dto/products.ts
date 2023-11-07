@@ -71,25 +71,5 @@ export interface ProductPropsResponse {
     status: string
     message: string
   }
-  data: {
-    current_page: number
-    data: dataProducts[]
-    first_page_url: string
-    from: 1
-    last_page: number
-    last_page_url: String
-    links: linkProps[]
-    next_page_url: any
-    path: String
-    per_page: number
-    prev_page_url: any
-    to: number
-    total: number
-    category: {
-      id: number
-      name: String
-      thumbnails: string
-    }
-    galleries: galeryProps[]
-  }
+  data: dataProducts
 }

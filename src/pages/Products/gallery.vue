@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import { defineProps, ref, onMounted } from 'vue'
+import { defineProps, computed, ref } from 'vue'
 
 const props = defineProps({
   galeryImage: Object,
   currentImage: String
 })
 
-const selectImage = ref(props.currentImage)
-
-function handleChangePhoto(img: any) {
-  selectImage.value = img
-}
-
-onMounted(() => {
-  if (props.galeryImage) {
-    selectImage.value = props.currentImage
+const initImage = ref('')
+const selectImage = computed({
+  // getter
+  get() {
+    return initImage.value || props.currentImage
+  },
+  // setter
+  set() {
+    // Note: we are using destructuring assignment syntax here.
+    return initImage.value
   }
 })
+
+function handleChangePhoto(img: string) {
+  initImage.value = img
+  return img
+}
 </script>
 
 <template>
   <section id="gallery">
     <!-- selected image -->
-    <img :src="selectImage || props.currentImage" alt="" class="w-full mt-6 rounded-2xl" />
+    <img :src="selectImage" alt="" class="w-full mt-6 rounded-2xl" />
 
     <!-- option image -->
     <div class="grid grid-cols-4 gap-4 mt-4">

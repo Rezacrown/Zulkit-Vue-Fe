@@ -2,6 +2,18 @@
 import { RouterLink } from 'vue-router'
 import navLink from './nav-link.vue'
 import authSection from './auth.vue'
+import userInfo from './user-info.vue'
+
+import { onBeforeMount } from 'vue'
+import { useUserInfo } from '@/stores/user'
+
+const user = useUserInfo()
+
+onBeforeMount(() => {
+  if (!user.userData) {
+    user.getuser()
+  }
+})
 </script>
 
 <template>
@@ -14,7 +26,8 @@ import authSection from './auth.vue'
         <!-- navlink section -->
         <navLink />
         <!-- auth section -->
-        <authSection />
+        <userInfo v-if="user.userData" :user="user.userData" />
+        <authSection v-else />
       </div>
     </nav>
   </header>
