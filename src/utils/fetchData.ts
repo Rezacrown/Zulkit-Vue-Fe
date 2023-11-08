@@ -18,7 +18,7 @@ export const getData = async (
 
     return response.data
   } catch (error) {
-    toast.error('something error', { position: 'top-center' })
+    toast.error('something wrong', { position: 'top-center' })
   }
 }
 
@@ -40,6 +40,6 @@ export const postData = async (
     return response.data
   } catch (error) {
     // console.log({ error })
-    toast.error('something error', { position: 'top-center' })
+    toast.error('Internal Server Error', { position: 'top-center' })
   }
 }
