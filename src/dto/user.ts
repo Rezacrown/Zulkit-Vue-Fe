@@ -22,7 +22,7 @@ export interface UserInfoResponse {
   id: number
   name: string
   email: string
-  roles: 'USER'
+  roles: string
   email_verified_at: any
   current_team_id: any
   profile_photo_path: any

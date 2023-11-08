@@ -4,15 +4,13 @@ import navLink from './nav-link.vue'
 import authSection from './auth.vue'
 import userInfo from './user-info.vue'
 
-import { onBeforeMount } from 'vue'
+import { onMounted } from 'vue'
 import { useUserInfo } from '@/stores/user'
 
 const user = useUserInfo()
 
-onBeforeMount(() => {
-  if (!user.userData) {
-    user.getuser()
-  }
+onMounted(() => {
+  user.getuser()
 })
 </script>
 
@@ -26,7 +24,7 @@ onBeforeMount(() => {
         <!-- navlink section -->
         <navLink />
         <!-- auth section -->
-        <userInfo v-if="user.userData" :user="user.userData" />
+        <userInfo v-if="user.isLoggIn" :user="user.userData!" />
         <authSection v-else />
       </div>
     </nav>
