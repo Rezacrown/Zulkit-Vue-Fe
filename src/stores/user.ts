@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getData } from '@/utils/fetchData'
+// import { getData } from '@/utils/fetchData'
 import axios from 'axios'
 import { config } from '@/config'
 
@@ -28,17 +28,16 @@ export const useUserInfo = defineStore('user', () => {
     //   isLoggIn.value = true
     // })
 
-    try {
-      const response = await axios.get(`${config.base_url}/api/user`, {
+    await axios
+      .get(`${config.base_url}/api/user`, {
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token')!)}`
         }
       })
-
-      return response.data
-    } catch (error) {
-      // toast.error('something error', { position: 'top-center' })
-    }
+      .then((res: { data: UserInfoResponse }) => {
+        userData.value = res.data
+        isLoggIn.value = true
+      })
   }
 
   return { getuser, userData, isLoggIn }

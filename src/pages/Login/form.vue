@@ -45,6 +45,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { postData } from '@/utils/fetchData'
 import type { LoginResponse } from '@/dto/user'
+import { toast } from 'vue3-toastify'
 
 const router = useRouter()
 
@@ -55,12 +56,16 @@ async function handleSubmit() {
   await postData('api/login', {
     email: email.value,
     password: password.value
-  }).then((res: LoginResponse) => {
-    localStorage.setItem('access_token', JSON.stringify(res.data.access_token))
-    localStorage.setItem('type_token', JSON.stringify(res.data.token_type))
-    localStorage.setItem('user_info', JSON.stringify(res.data.user))
-
-    router.push('/')
   })
+    .then((res: LoginResponse) => {
+      localStorage.setItem('access_token', JSON.stringify(res.data.access_token))
+      localStorage.setItem('type_token', JSON.stringify(res.data.token_type))
+      localStorage.setItem('user_info', JSON.stringify(res.data.user))
+
+      router.push('/')
+    })
+    .catch(() => {
+      toast.error('invalid credential', { position: 'top-center' })
+    })
 }
 </script>

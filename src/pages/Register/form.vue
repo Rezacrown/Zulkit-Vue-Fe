@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import type { RegisterResponse } from '@/dto/user'
 import { postData } from '@/utils/fetchData'
 import { ref } from 'vue'
+import { toast } from 'vue3-toastify'
 
 const router = useRouter()
 const payload = ref({
@@ -20,13 +21,17 @@ async function handleRegister() {
     email: payload.value.email,
     password: payload.value.password,
     title: 'title'
-  }).then((res: { data: RegisterResponse }) => {
-    localStorage.setItem('access_token', JSON.stringify(res.data.access_token))
-    localStorage.setItem('type_token', JSON.stringify(res.data.token_type))
-    localStorage.setItem('user_info', JSON.stringify(res.data.user))
-
-    router.push({ name: 'home' })
   })
+    .then((res: { data: RegisterResponse }) => {
+      localStorage.setItem('access_token', JSON.stringify(res.data.access_token))
+      localStorage.setItem('type_token', JSON.stringify(res.data.token_type))
+      localStorage.setItem('user_info', JSON.stringify(res.data.user))
+
+      router.push({ name: 'home' })
+    })
+    .catch(() => {
+      toast.error('user already exist', { position: 'top-center' })
+    })
 }
 </script>
 

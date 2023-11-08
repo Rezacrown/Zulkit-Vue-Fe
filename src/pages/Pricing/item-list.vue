@@ -1,18 +1,27 @@
 <script setup lang="ts">
 import { postData } from '@/utils/fetchData'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify'
 
 function handleCheckout(totalPayment: number) {
-  postData(
-    'api/checkout',
-    {
-      payment_total: totalPayment,
-      payment_status: 'PENDING'
-    },
-    {
-      accessToken: JSON.parse(localStorage.getItem('access_token')!),
-      type: 'Bearer'
-    }
-  )
+  const userLoggedIn = JSON.parse(localStorage.getItem('user_info')!) ?? null
+
+  if (!userLoggedIn) {
+    useRouter().push('/login')
+    toast.error('Please Login for Checkouts', { position: 'top-center' })
+  } else {
+    postData(
+      'api/checkout',
+      {
+        payment_total: totalPayment,
+        payment_status: 'PENDING'
+      },
+      {
+        accessToken: JSON.parse(localStorage.getItem('access_token')!),
+        type: 'Bearer'
+      }
+    )
+  }
 }
 </script>
 
