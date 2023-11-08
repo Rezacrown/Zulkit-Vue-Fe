@@ -26,6 +26,7 @@ onMounted(() => {
         <!-- auth section -->
         <userInfo v-if="user.isLoggIn" :user="user.userData!" />
         <authSection v-else />
+        <!-- <authSection /> -->
       </div>
     </nav>
   </header>

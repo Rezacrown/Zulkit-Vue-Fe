@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import FormLogin from './form.vue'
+
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+onMounted(() => {
+  if (localStorage.getItem('user_info')) {
+    useRouter().push({ path: '/', replace: true })
+  }
+})
 </script>
 
 <template>

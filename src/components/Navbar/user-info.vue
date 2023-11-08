@@ -25,7 +25,8 @@ function logout() {
 
 <template>
   <div class="md:order-2">
-    <div class="flex items-center">
+    <!-- destop menu -->
+    <div class="hidden lg:flex items-center">
       <div class="mr-2 text-sm font-regular">Halo, {{ user.name }}</div>
       <button
         type="button"
@@ -40,8 +41,9 @@ function logout() {
       </button>
     </div>
 
+    <!-- dropdown menu -->
     <div
-      class="z-50 fixed right-20 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+      class="z-50 none fixed right-20 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
       id="dropdown"
       :class="{ hidden: !show }"
     >
@@ -77,7 +79,10 @@ function logout() {
         </li>
       </ul>
     </div>
+
+    <!--  mobile menu -->
     <button
+      @click="toggleDropdown"
       data-collapse-toggle="mobile-menu-2"
       type="button"
       class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { postData } from '@/utils/fetchData'
 
 function handleCheckout(totalPayment: number) {

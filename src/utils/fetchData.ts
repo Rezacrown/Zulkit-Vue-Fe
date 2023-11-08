@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { config } from '@/config'
+import { toast } from 'vue3-toastify'
 
 export const getData = async (
   url: string,
@@ -8,13 +9,17 @@ export const getData = async (
     type: 'Bearer'
   }
 ) => {
-  const response = await axios.get(`${config.base_url}/${url}`, {
-    headers: {
-      Authorization: token?.accessToken && token.type ? `${token.type} ${token.accessToken}` : ''
-    }
-  })
+  try {
+    const response = await axios.get(`${config.base_url}/${url}`, {
+      headers: {
+        Authorization: token?.accessToken && token.type ? `${token.type} ${token.accessToken}` : ''
+      }
+    })
 
-  return response.data
+    return response.data
+  } catch (error) {
+    toast.error('something error', { position: 'top-center' })
+  }
 }
 
 export const postData = async (
@@ -34,6 +39,7 @@ export const postData = async (
 
     return response.data
   } catch (error) {
-    console.log({ error })
+    // console.log({ error })
+    toast.error('something error', { position: 'top-center' })
   }
 }

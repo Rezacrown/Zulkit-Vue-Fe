@@ -16,5 +16,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node",
+    "types": [
+      "vue3-toastify/global"
+    ]
   }
 }

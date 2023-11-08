@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import FormRegister from './form.vue'
 import IconGroup from '@/components/IconGroup/index.vue'
+
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+onMounted(() => {
+  if (localStorage.getItem('user_info')) {
+    useRouter().push({ path: '/', replace: true })
+  }
+})
 </script>
 
 <template>
