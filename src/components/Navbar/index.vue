@@ -4,13 +4,27 @@ import navLink from './nav-link.vue'
 import authSection from './auth.vue'
 import userInfo from './user-info.vue'
 
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useUserInfo } from '@/stores/user'
 
 const user = useUserInfo()
 
+// const isLoggIn = ref(false)
+
 onMounted(() => {
-  user.getuser()
+  if (!user.userData) {
+    user.getuser().then(() => {
+      user.isLoggIn = true
+    })
+  }
+  // user.getuser()
+})
+
+// watch mirip useeffect di react
+watch(user.isLoggIn, async (newValue) => {
+  if (!newValue || !user.userData) {
+    user.isLoggIn = false
+  }
 })
 </script>
 

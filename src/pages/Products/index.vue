@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Navbar from '@/components/Navbar/index.vue'
+
 import Gallery from './gallery.vue'
 import SideMenu from './side-menu.vue'
 
@@ -25,6 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Navbar />
   <div class="container p-2 mx-auto my-10 max-w-7xl">
     <div class="flex flex-row flex-wrap py-4">
       <main role="main" class="w-full px-4 pt-1 sm:w-2/3 md:w-2/3">

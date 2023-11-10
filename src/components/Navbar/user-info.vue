@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
 import type { UserInfoResponse } from '@/dto/user'
 
-const router = useRouter()
+// const router = useRouter()
 
 defineProps<{
   user: UserInfoResponse
@@ -19,7 +19,9 @@ function toggleDropdown() {
 function logout() {
   localStorage.clear()
 
-  router.push('/login')
+  // router.push({ path: '/login' })
+
+  window.location.href = '/login'
 }
 </script>
 
@@ -27,7 +29,7 @@ function logout() {
   <div class="md:order-2">
     <!-- destop menu -->
     <div class="hidden lg:flex items-center">
-      <div class="mr-2 text-sm font-regular">Halo, {{ user.name }}</div>
+      <div class="mr-2 text-sm font-regular">Halo, {{ user.data.name }}</div>
       <button
         type="button"
         class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -37,7 +39,7 @@ function logout() {
         @click="toggleDropdown"
       >
         <span class="sr-only">Open user menu</span>
-        <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url" alt="user photo" />
+        <img class="w-8 h-8 rounded-full" :src="user.data.profile_photo_url" alt="user photo" />
       </button>
     </div>
 
@@ -48,7 +50,7 @@ function logout() {
       :class="{ hidden: !show }"
     >
       <div class="px-4 py-3">
-        <span class="block text-sm text-gray-900 dark:text-white">{{ user.email }}</span>
+        <span class="block text-sm text-gray-900 dark:text-white">{{ user.data.email }}</span>
         <span
           class="block text-sm text-gray-500 truncate font-regular dark:text-gray-400"
           >{{

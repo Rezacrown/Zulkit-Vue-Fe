@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import Navbar from '@/components/Navbar/index.vue'
+
 import { RouterLink } from 'vue-router'
 </script>
 
 <template>
+  <Navbar />
   <div class="relative overflow-hidden bg-white">
     <div class="mx-auto max-w-7xl">
       <div class="flex flex-col items-center w-full min-h-screen pt-6 sm:justify-center sm:pt-0">

@@ -19,18 +19,20 @@ export interface LoginResponse {
 }
 
 export interface UserInfoResponse {
-  id: number
-  name: string
-  email: string
-  roles: string
-  email_verified_at: any
-  current_team_id: any
-  profile_photo_path: any
-  created_at: Date
-  updated_at: Date
-  title: string
-  profile_photo_url: string
-  subscription: []
+  data: {
+    id: number
+    name: string
+    email: string
+    roles: string
+    email_verified_at: any
+    current_team_id: any
+    profile_photo_path: any
+    created_at: Date
+    updated_at: Date
+    title: string
+    profile_photo_url: string
+    subscription: []
+  }
 }
 
 export interface RegisterResponse {

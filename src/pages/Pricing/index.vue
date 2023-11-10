@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import Navbar from '@/components/Navbar/index.vue'
+
 import IconGroup from '@/components/IconGroup/index.vue'
 import ListPricing from './item-list.vue'
 </script>
 
 <template>
+  <Navbar />
   <div class="relative overflow-hidden bg-white">
     <div class="mx-auto">
       <div class="flex flex-col items-center w-full sm:justify-center sm:pt-0">
